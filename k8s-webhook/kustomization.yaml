@@ -1,4 +1,4 @@
 resources:
 - configmap.yaml
 - service.yaml
-- webhookconf.yaml
+- webhookconf-cert-manage.yaml
