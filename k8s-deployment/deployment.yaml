@@ -16,7 +16,9 @@ spec:
     spec:
       containers:
       - name: hello-webhook
-        image: CONTAINER_IMAGE
+        # TODO: env var/kustomize this
+        # NOTE: update this if using different image
+        image: quay.io/sallyom/mutating-webhook:test
         ports:
         - containerPort: 8000
         volumeMounts:
@@ -30,4 +32,4 @@ spec:
       volumes:
       - name: hello-tls-secret
         secret:
-          secretName: hello-tls-secret
+          secretName: hello-webhook
