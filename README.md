@@ -10,7 +10,7 @@ A Kubernetes Mutating Admission Webhook example.
 
 ```
 $ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
-$ make k8s-deploy
+$ make k8s
 ```
 
 #### Mutated Pod Example

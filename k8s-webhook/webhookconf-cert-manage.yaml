@@ -12,7 +12,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: whfun/hello-webhook
 webhooks:
-- name: hello-webhook.example
+- name: hello-webhook.what.fun
   objectSelector:
     matchLabels:    
       hello: "true"
