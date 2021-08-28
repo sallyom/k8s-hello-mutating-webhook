@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-webhook-deployment
+  namespace: whfun
   labels:
     app: hello-webhook
 spec:

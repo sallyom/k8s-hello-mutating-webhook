@@ -9,10 +9,11 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
   name: hello-webhook
+  namespace: whfun
   annotations:
     cert-manager.io/inject-ca-from: whfun/hello-webhook
 webhooks:
-- name: hello-webhook.example
+- name: hello-webhook.what.fun
   objectSelector:
     matchLabels:    
       hello: "true"

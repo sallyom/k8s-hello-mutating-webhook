@@ -1,4 +1,5 @@
-# If modifying this ns, must substitute whfun/new-ns in ./k8s-webhook/webhookconf-cert-manage.yaml
+# If modifying this ns, must substitute whfun/new-ns in
+# ./k8s-webhook/webhookconf-cert-manage.yaml & ./k8s-deployment/deployment.yaml
 NAMESPACE?=whfun
 CONTAINER_REPO?=quay.io/sallyom/mutating-webhook
 CONTAINER_VERSION?=test
