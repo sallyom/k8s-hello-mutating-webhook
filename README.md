@@ -3,53 +3,57 @@ A Kubernetes Mutating Admission Webhook example with cert-manager self-signer.
 
 #### Deploy to K8s ('whfun' namespace)
 
+Deploy cert-manager if necessary
+
+```bash
+requires [cert-manager](https://cert-manager.io/docs/installation/kubectl/#installing-with-regular-manifests)
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.9.1/cert-manager.yaml
 ```
-$ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
-$ make k8s
+
+#### Deploy to K8s
+
+```bash
+git clone git@github.com:sallyom/k8s-mutating-webhook.git && cd k8s-mutating-webhook
+make k8s
 ```
 
 #### Mutated Pod Example
 
-```
-$ kubectl run busybox-1 -n whfun --image=busybox  --restart=Never -l=hello=true -- sleep 3600
-$ kubectl exec busybox-1 -n whfun -it -- ls /etc/config/hello.txt
-# The output should be:
-/etc/config/hello.txt
-
-$ kubectl exec busybox-1 -n whfun -it -- sh -c "cat /etc/config/hello.txt"
+```bash
+kubectl apply -f https://raw.githubusercontent.com/sallyom/k8s-hello-mutating-webhook/main/testdeploy.yaml
+kubectl exec <testpod-name> -n whfun -it -- sh -c "cat /etc/config/hello.txt"
 # The output should be:
 THIS IS K8S
 ```
 
 We successfully mutated our pod spec and added an arbitary volume/file in there, yay !
-Try it with the deployment, too! `kubectl apply -f testdeploy.yaml` then check the pods for hello.txt.
 
 #### Cleanup
 
 Delete all k8s resources
 
-```
-$ make k8s-delete-all
+```bash
+make k8s-delete-all
 ```
 
 #### Run tests
 
-```
-$ make test
+```bash
+make test
 ```
 
 Build,Push image
 
-```
+```bash
 # define env vars for building image
 # update deployment.yaml with image name if building
-$ export CONTAINER_REPO=quay.io/my-user/my-repo
-$ export CONTAINER_VERSION=x.y.z
+export CONTAINER_REPO=quay.io/my-user/my-repo
+export CONTAINER_VERSION=x.y.z
 ```
 
-```
-$ make podman-build
-$ make podman-push
+```bash
+make podman-build
+make podman-push
 ```
 * for this example you'll need to make the container repository public unless you'll be specifying ImagePullSecrets on the Pod
 

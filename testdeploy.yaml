@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: quay.io/bitnami/nginx:latest
+        image: docker.io/bitnami/nginx:latest
         ports:
         - containerPort: 80
